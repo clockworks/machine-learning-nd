@@ -14142,9 +14142,8 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>In CharityML we do Supervised Lerning. We have a dataset and we know all atributes of each people and we know their income as well. So, We know what category they belongs. That is why it is supervised Learning.</p>
-<p>I would prefer Decision Tree as  Model</p>
-<p>Decision tree will have nodes. Each Nodes will represent a feature and will split data into two parts according to the feature value. At root, we should chose most related features. After several nodes the data would be splitted into two several times and we should find pure data groups which are above greater than 50K or less than 50 K. When We have a new data, we will go through the decision tree and compare all features and we should en up one category or the other. It will be our prediction.</p>
+<p>Decision tree will have nodes. Each Nodes will represent a feature and will split data into two parts according to the feature value. While splitting data, we are trying to find pure data on leaf nodes  (all above &gt;50K, or all above &lt;=50K ). We check all features and chose the features maximizing the splitting criteria. We repeat same steps for each nodes.</p>
+<p>When We have a new data, we will go through the decision tree and evaluate each node for new data. At the end we should end up at one of the leaf of the tree. Lets say all data were &gt;50K for this leaf during train, then our prediction for the new data will be &gt;50K.</p>
 
 </div>
 </div>
