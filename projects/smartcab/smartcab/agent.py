@@ -23,7 +23,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set any additional class parameters as needed
-
+        self.trials = 0
 
 
 
@@ -49,8 +49,19 @@ class LearningAgent(Agent):
         print(self.valid_actions)
         print("#############")
 
-        self.epsilon = self.epsilon - 0.005
+        print(self.trials)
+        self.trials = self.trials + 1
+        print(self.trials)
 
+        print("#############")
+        print(self.trials ^ 2)
+        print(math.pow(self.trials, 2))
+        print("#############")
+
+       # self.epsilon = 1 / ( math.pow(self.trials, 2))
+       # self.epsilon = self.epsilon - self.alpha
+        self.epsilon = math.cos(self.trials * self.alpha)
+        self.apsilon = math.pow(math.e, (-1 * self.alpha * self.trials))
 
         #t = 1
         #self.epsilon = 1 / math.degrees(2)
@@ -164,11 +175,14 @@ class LearningAgent(Agent):
 
 
         #more than one maxQ value - random
+        list_max_tie_actions = []
         if self.learning == True:
             if self.epsilon > random.random():
                 action = random.choice(self.valid_actions)
             else:
-                action = self.Q[state].keys()[(self.Q[state].values()).index(self.get_maxQ(state))]
+                # action = self.Q[state].keys()[(self.Q[state].values()).index(self.get_maxQ(state))]
+                list_max_tie_actions = [ key for key, value in self.Q[state].items() if value == self.get_maxQ(state) ]
+                action = random.choice(list_max_tie_actions)
         else:
             action = random.choice(self.valid_actions)
 
@@ -228,7 +242,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning=True, epsilon=0.5, alpha=0.4)
+    agent = env.create_agent(LearningAgent, learning=True, epsilon=0.5, alpha=0.005)
     
     ##############
     # Follow the driving agent
