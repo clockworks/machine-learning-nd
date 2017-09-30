@@ -60,8 +60,11 @@ class LearningAgent(Agent):
 
        # self.epsilon = 1 / ( math.pow(self.trials, 2))
        # self.epsilon = self.epsilon - self.alpha
-        self.epsilon = math.cos(self.trials * self.alpha)
+        # self.epsilon = math.cos(self.trials * self.alpha)
+
+        #self.apsilon = self.epsilon - 0.05
         self.apsilon = math.pow(math.e, (-1 * self.alpha * self.trials))
+
 
         #t = 1
         #self.epsilon = 1 / math.degrees(2)
